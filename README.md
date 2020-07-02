@@ -24,3 +24,10 @@ or
 ```
 sudo python3 keystroke.py
 ```
+
+## Plan
+- Add Mouse click indicators (LMB and RMB)
+- Add different theme
+- Add key changer (if possible)
+- Clean up
+- Compile to executable (maybe)
