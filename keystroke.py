@@ -4,17 +4,15 @@ import sys
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPalette, QColor, QFont
 from PyQt5.QtWidgets import *
-from palette import dark_palette
 import keyboard, mouse
 
-def change_to_dark():
-    app.setPalette(dark_palette)
+# ---- ColorSchemes
+# Human Readable ColorSchemes
+# scheme_name = [background, foreground]
+zi_dark = ["2F3640", "ffffff"] # normal
+zi_darkP = ["37B0FF", "ffffff"] # pressed
 
-def change_to_light():
-    app.setPalette(dark_palette)
-
-zi_dark = ["2F3640", "ffffff"]
-zi_darkP = ["37B0FF", "ffffff"]
+# Readable Color by the codes
 colorscheme = str("* {background:" + "#" + str(zi_dark[0]) + "; color: " + "#" + str(zi_dark[1]) + "}")
 colorscheme_pressed = str("* {background:" + "#" + str(zi_darkP[0]) + "; color: " + "#" + str(zi_darkP[1]) + "}")
 
@@ -77,89 +75,52 @@ class Ui_Form(object):
         self.lab_x.setText(_translate("Form", "X"))
         self.lab_c.setText(_translate("Form", "C"))
 
-def pressed_up(f): 
+def release_up(f): 
     ui.lab_up.setStyleSheet(str(colorscheme))
-    # print("and here is", f)
-def release_up(f):
+def pressed_up(f):
     ui.lab_up.setStyleSheet(str(colorscheme_pressed))
-    # print("and here is", f)
-def pressed_down(f): 
+def release_down(f): 
     ui.lab_down.setStyleSheet(str(colorscheme))
-    # print("and here is", f)
-def release_down(f):
+def pressed_down(f):
     ui.lab_down.setStyleSheet(str(colorscheme_pressed))
-    # print("and here is", f)
-def pressed_a(f): 
+def release_a(f): 
     ui.lab_left.setStyleSheet(str(colorscheme))
-    # print("and here is", f)
-def release_a(f):
+def pressed_a(f):
     ui.lab_left.setStyleSheet(str(colorscheme_pressed))
-    # print("and here is", f)
-def pressed_d(f): 
+def release_d(f): 
     ui.lab_right.setStyleSheet(str(colorscheme))
-    # print("and here is", f)
-def release_d(f):
+def pressed_d(f):
     ui.lab_right.setStyleSheet(str(colorscheme_pressed))
-    # print("and here is", f)
-def pressed_x(f): 
+def release_x(f): 
     ui.lab_x.setStyleSheet(str(colorscheme))
-    # print("and here is", f)
-def release_x(f):
+def pressed_x(f):
     ui.lab_x.setStyleSheet(str(colorscheme_pressed))
-    # print("and here is", f)
-def pressed_c(f): 
+def release_c(f): 
     ui.lab_c.setStyleSheet(str(colorscheme))
-    # print("and here is", f)
-def release_c(f):
+def pressed_c(f):
     ui.lab_c.setStyleSheet(str(colorscheme_pressed))
-    # print("and here is", f)
 
 # ---- Init
 app = QApplication(sys.argv)
 window = QWidget()
 ui = Ui_Form()
 ui.setupUi(window)
-layout = QVBoxLayout()
 
-# ---- app settings
-app.setStyle('Fusion')
+# ---- Hotkeys
+# keyboard.add_hotkey('a', set_style_bgwhite) ---- This is a test
+keyboard.on_press_key('up',pressed_up)
+keyboard.on_release_key('up',release_up)
+keyboard.on_press_key('down',pressed_down)
+keyboard.on_release_key('down',release_down)
+keyboard.on_press_key('a',pressed_a)
+keyboard.on_release_key('a',release_a)
+keyboard.on_press_key('d',pressed_d)
+keyboard.on_release_key('d',release_d)
+keyboard.on_press_key('c',pressed_c)
+keyboard.on_release_key('c',release_c)
+keyboard.on_press_key('x',pressed_x)
+keyboard.on_release_key('x',release_x)
 
-# ---- Widgets Values
-btn_dark = QPushButton("Dark Mode")
-btn_light = QPushButton("Light Mode")
-label_1 = QLabel("Ahoy")
-label_1.setStyleSheet("* {background-color: #000; color: #fff; width: 10px; height: 10px; margin: 5px}")
-
-label_2 = QLabel("Ahoy")
-label_2.setStyleSheet("* {background-color: #000; color: #fff; width: 10px; height: 10px; margin: 5px}")
-
-# keyboard.add_hotkey('a', set_style_bgwhite)
-keyboard.on_press_key('up',release_up)
-keyboard.on_release_key('up',pressed_up)
-keyboard.on_press_key('down',release_down)
-keyboard.on_release_key('down',pressed_down)
-keyboard.on_press_key('a',release_a)
-keyboard.on_release_key('a',pressed_a)
-keyboard.on_press_key('d',release_d)
-keyboard.on_release_key('d',pressed_d)
-keyboard.on_press_key('c',release_c)
-keyboard.on_release_key('c',pressed_c)
-keyboard.on_press_key('x',release_x)
-keyboard.on_release_key('x',pressed_x)
-# Layouts
-# layout.addWidget(label_1)
-# layout.addWidget(label_2)
-# layout.addWidget(btn_dark)
-# layout.addWidget(btn_light)
-
-btn_dark.clicked.connect(change_to_dark)
-
-# Window Settings
-# window.setLayout(layout)
-# window.resize(300,300)
-# window.move(0,0)
-# window.setWindowTitle("TestApp")
-
-# Launch Window
+# ---- Launch Window
 window.show()
 sys.exit(app.exec_())
