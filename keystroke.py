@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QPalette, QColor, QFont
 from PyQt5.QtWidgets import *
 from palette import dark_palette
-import keyboard
+import keyboard, mouse
 
 def change_to_dark():
     app.setPalette(dark_palette)
@@ -13,6 +13,10 @@ def change_to_dark():
 def change_to_light():
     app.setPalette(dark_palette)
 
+zi_dark = ["2F3640", "ffffff"]
+zi_darkP = ["37B0FF", "ffffff"]
+colorscheme = str("* {background:" + "#" + str(zi_dark[0]) + "; color: " + "#" + str(zi_dark[1]) + "}")
+colorscheme_pressed = str("* {background:" + "#" + str(zi_darkP[0]) + "; color: " + "#" + str(zi_darkP[1]) + "}")
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -26,38 +30,38 @@ class Ui_Form(object):
         self.lab_up = QLabel(Form)
         self.lab_up.setFont(font)
         self.lab_up.setGeometry(QRect(50, 15, 31, 31))
-        self.lab_up.setStyleSheet("* {background: #000; color: #fff}")
+        self.lab_up.setStyleSheet(colorscheme)
         self.lab_up.setAlignment(Qt.AlignCenter)
         self.lab_up.setObjectName("lab_up")
         self.lab_left = QLabel(Form)
         self.lab_left.setFont(font)
         self.lab_left.setGeometry(QRect(15, 50, 31, 31))
-        self.lab_left.setStyleSheet("* {background: #000; color: #fff}")
+        self.lab_left.setStyleSheet(colorscheme)
         self.lab_left.setAlignment(Qt.AlignCenter)
         self.lab_left.setObjectName("lab_left")
         self.lab_down = QLabel(Form)
         self.lab_down.setFont(font)
         self.lab_down.setGeometry(QRect(50, 50, 31, 31))
-        self.lab_down.setStyleSheet("* {background: #000; color: #fff}")
+        self.lab_down.setStyleSheet(colorscheme)
         self.lab_down.setAlignment(Qt.AlignCenter)
         self.lab_down.setObjectName("lab_down")
         self.lab_right = QLabel(Form)
         self.lab_right.setFont(font)
         self.lab_right.setGeometry(QRect(85, 50, 31, 31))
-        self.lab_right.setStyleSheet("* {background: #000; color: #fff}")
+        self.lab_right.setStyleSheet(colorscheme)
         self.lab_right.setAlignment(Qt.AlignCenter)
         self.lab_right.setObjectName("lab_right")
         self.lab_x = QLabel(Form)
         self.lab_x.setFont(font)
         self.lab_x.setObjectName(u"lab_x")
-        self.lab_x.setGeometry(QRect(15, 85, 48, 31))
-        self.lab_x.setStyleSheet(u"* {background: #000; color: #fff}")
+        self.lab_x.setGeometry(QRect(15, 85, 66, 31))
+        self.lab_x.setStyleSheet(colorscheme)
         self.lab_x.setAlignment(Qt.AlignCenter)
         self.lab_c = QLabel(Form)
         self.lab_c.setFont(font)
         self.lab_c.setObjectName(u"lab_c")
-        self.lab_c.setGeometry(QRect(67, 85, 49, 31))
-        self.lab_c.setStyleSheet(u"* {background: #000; color: #fff}")
+        self.lab_c.setGeometry(QRect(85, 85, 31, 31))
+        self.lab_c.setStyleSheet(colorscheme)
         self.lab_c.setAlignment(Qt.AlignCenter)
 
         self.retranslateUi(Form)
@@ -74,40 +78,40 @@ class Ui_Form(object):
         self.lab_c.setText(_translate("Form", "C"))
 
 def pressed_up(f): 
-    ui.lab_up.setStyleSheet("* {background-color: #000; color: #fff}")
+    ui.lab_up.setStyleSheet(str(colorscheme))
     # print("and here is", f)
 def release_up(f):
-    ui.lab_up.setStyleSheet("* {background-color: #37B0FF; color: #000}")
+    ui.lab_up.setStyleSheet(str(colorscheme_pressed))
     # print("and here is", f)
 def pressed_down(f): 
-    ui.lab_down.setStyleSheet("* {background-color: #000; color: #fff}")
+    ui.lab_down.setStyleSheet(str(colorscheme))
     # print("and here is", f)
 def release_down(f):
-    ui.lab_down.setStyleSheet("* {background-color: #37B0FF; color: #000}")
+    ui.lab_down.setStyleSheet(str(colorscheme_pressed))
     # print("and here is", f)
 def pressed_a(f): 
-    ui.lab_left.setStyleSheet("* {background-color: #000; color: #fff}")
+    ui.lab_left.setStyleSheet(str(colorscheme))
     # print("and here is", f)
 def release_a(f):
-    ui.lab_left.setStyleSheet("* {background-color: #37B0FF; color: #000}")
+    ui.lab_left.setStyleSheet(str(colorscheme_pressed))
     # print("and here is", f)
 def pressed_d(f): 
-    ui.lab_right.setStyleSheet("* {background-color: #000; color: #fff}")
+    ui.lab_right.setStyleSheet(str(colorscheme))
     # print("and here is", f)
 def release_d(f):
-    ui.lab_right.setStyleSheet("* {background-color: #37B0FF; color: #000}")
+    ui.lab_right.setStyleSheet(str(colorscheme_pressed))
     # print("and here is", f)
 def pressed_x(f): 
-    ui.lab_x.setStyleSheet("* {background-color: #000; color: #fff}")
+    ui.lab_x.setStyleSheet(str(colorscheme))
     # print("and here is", f)
 def release_x(f):
-    ui.lab_x.setStyleSheet("* {background-color: #37B0FF; color: #000}")
+    ui.lab_x.setStyleSheet(str(colorscheme_pressed))
     # print("and here is", f)
 def pressed_c(f): 
-    ui.lab_c.setStyleSheet("* {background-color: #000; color: #fff}")
+    ui.lab_c.setStyleSheet(str(colorscheme))
     # print("and here is", f)
 def release_c(f):
-    ui.lab_c.setStyleSheet("* {background-color: #37B0FF; color: #000}")
+    ui.lab_c.setStyleSheet(str(colorscheme_pressed))
     # print("and here is", f)
 
 # ---- Init
